@@ -1,19 +1,20 @@
-/*** Pricing logic based on request:
-address
-memory
-storage
-cpuSpec
-redundancy
-region
-isBackupRequired
-backupFrequency
-isSharedInstance
-paymentFrequency
-dbEngine
-isActive
-status
-dateCreated
-dbOwner
+/***
+ Pricing logic based on request:
+    address
+    memory
+    storage
+    cpuSpec
+    redundancy
+    region
+    isBackupRequired
+    backupFrequency
+    isSharedInstance
+    paymentFrequency
+    dbEngine
+    isActive
+    status
+    dateCreated
+    dbOwner
  * @param request
  * @returns {number}
  */
