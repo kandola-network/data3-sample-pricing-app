@@ -58,6 +58,7 @@ function calculatePaymentDiscount(basePrice, paymentFrequency) {
 
 pricingEngineApp.post('/price', async (req, res) => {
     const params = req.body;
+    console.log("Got pricing request:", params);
     const price = calculatePrice(params);
 
     try {
@@ -76,5 +77,5 @@ pricingEngineApp.post('/price', async (req, res) => {
 const PORT = process.env.PORT || 3080;
 pricingEngineApp.listen(PORT, () => {
     console.log(`Pricing Engine is running on port ${PORT}`);
-    console.log(`Pricing Engine will send calculated pries to ${process.env.WEBHOOK_URL}`);
+    console.log(`Pricing Engine will send calculated prices to ${process.env.WEBHOOK_URL}`);
 });
