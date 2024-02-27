@@ -5,7 +5,8 @@ const express = require('express');
 const axios = require('axios');
 
 const pricingEngineApp = express();
-pricingEngineApp.use(express.json());
+//pricingEngineApp.use(express.json());
+pricingEngineApp.use(express.urlencoded({ extended: true }));
 
 
 function calculatePrice(request) {
@@ -59,11 +60,37 @@ function calculatePaymentDiscount(basePrice, paymentFrequency) {
 pricingEngineApp.post('/price', async (req, res) => {
     const params = req.body;
     console.log("Got pricing request:", params);
-    const price = calculatePrice(params);
+
+    const bodyMessage = req.body.message;
+    console.log("Got pricing request message:", bodyMessage);
+
+    const bodyMessageJson = JSON.parse(bodyMessage);
+    console.log("Got pricing request JSON", bodyMessageJson);
+
+    const requestData = {
+        // Assuming the form fields match the JSON structure you provided earlier
+        address: bodyMessageJson.address,
+        memory: parseInt(bodyMessageJson.memory, 10),
+        storage: parseInt(bodyMessageJson.storage, 10),
+        cpuSpec: bodyMessageJson.cpuSpec,
+        redundancy: parseInt(bodyMessageJson.redundancy, 10),
+        region: bodyMessageJson.region,
+        isBackupRequired: bodyMessageJson.isBackupRequired === 'true',
+        backupFrequency: bodyMessageJson.backupFrequency,
+        isSharedInstance: bodyMessageJson.isSharedInstance === 'true',
+        paymentFrequency: bodyMessageJson.paymentFrequency,
+        dbEngine: bodyMessageJson.dbEngine,
+        isActive: bodyMessageJson.isActive === 'true',
+        status: bodyMessageJson.status,
+        dateCreated: parseInt(bodyMessageJson.dateCreated, 10),
+        dbOwner: bodyMessageJson.dbOwner
+    };
+
+    const price = calculatePrice(requestData);
 
     try {
         await axios.post(process.env.WEBHOOK_URL, {
-            requestId: params.requestId,
+            address: requestData.address,
             price: price
         });
         res.send({ status: 'success', requestId: params.requestId, price: price });
