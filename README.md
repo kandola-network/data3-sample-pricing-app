@@ -40,6 +40,31 @@ export WEBHOOK_URL=https://dev.example.com/webhook
 npm start
 ```
 
+## API
+* HTTP Method: POST
+* Endpoint: "/price"
+* Post Data (JSON):
+```json
+{
+  "requestId": "e2c7e462f52fa2c252970c739532ac8a98694f036833d3135fe7b5dea97c4718",
+  "memory":6,
+  "storage":250,
+  "cpuSpec":"intel xeon e5-2.5-8",
+  "redundancy":3,
+  "region":"WESTERN_EUROPE-United Kingdom-London",
+  "isBackupRequired":true,
+  "backupFrequency":"MONTHLY",
+  "isSharedInstance":true,
+  "paymentFrequency":"MONTHLY",
+  "name":"Dev 2",
+  "dbEngine":"MySQL-8.2.0-community",
+  "isActive":true,
+  "status":"NEW",
+  "dateCreated":1708959382125,
+  "dbOwner":"0xb34ce981c44702f0e5b19884009f76be2f10fbb7"
+}
+```
+
 ## Built With
 * [Node.js](https://nodejs.org/) 
 * [Express.js](https://expressjs.com/)
