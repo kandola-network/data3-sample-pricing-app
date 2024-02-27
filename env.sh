@@ -1,1 +1,1 @@
-export WEBHOOK_URL=https://node_provider_service_local_url/internalCommunication/responseForProposal
+export WEBHOOK_URL=https://localhost:8081/internalCommunication/responseForProposal

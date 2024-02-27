@@ -8,64 +8,19 @@ const pricingEngineApp = express();
 //pricingEngineApp.use(express.json());
 pricingEngineApp.use(express.urlencoded({ extended: true }));
 
+const { calculatePrice } = require('./pricing');
 
-function calculatePrice(request) {
-    // Simple pricing logic
-    const basePrice = 50; // Base price for any deployment
-    const memoryPrice = request.memory * 5; // Example: $5 per GB of memory
-    const storagePrice = request.storage * 2; // Example: $2 per GB of storage
-    // Add more calculations based on cpuSpec, redundancy, region, etc.
-
-    return basePrice + memoryPrice + storagePrice; // Total price
-};
-
-
-/*function calculatePriceComplex(request) {
-    request.isBackupRequired = undefined;
-    let basePrice = calculateBasePrice(request.memory, request.storage, request.cpuSpec);
-    let regionMultiplier = getRegionMultiplier(request.region);
-    let redundancyCost = calculateRedundancyCost(basePrice, request.redundancy);
-    let backupCost = request.isBackupRequired ? calculateBackupCost(basePrice, request.backupFrequency) : 0;
-    let sharedDiscount = request.isSharedInstance ? calculateSharedDiscount(basePrice) : 0;
-    let paymentDiscount = calculatePaymentDiscount(basePrice, request.paymentFrequency);
-
-    return (basePrice + redundancyCost + backupCost - sharedDiscount - paymentDiscount) * regionMultiplier;
-}
-
-function calculateBasePrice(memory, storage, cpuSpec) {
-    return undefined;
-}
-
-function getRegionMultiplier(region) {
-    return undefined;
-}
-
-function calculateRedundancyCost(basePrice, redundancy) {
-    return undefined;
-}
-
-function calculateBackupCost(basePrice, backupFrequency) {
-    return 0;
-}
-
-function calculateSharedDiscount(basePrice) {
-    return 0;
-}
-
-function calculatePaymentDiscount(basePrice, paymentFrequency) {
-    return undefined;
-}*/
 
 
 pricingEngineApp.post('/price', async (req, res) => {
     const params = req.body;
-    console.log("Got pricing request:", params);
+    //console.log("Got pricing request:", params);
 
     const bodyMessage = req.body.message;
-    console.log("Got pricing request message:", bodyMessage);
+    //console.log("Got pricing request message:", bodyMessage);
 
     const bodyMessageJson = JSON.parse(bodyMessage);
-    console.log("Got pricing request JSON", bodyMessageJson);
+    console.log("Got pricing request:", bodyMessageJson);
 
     const requestData = {
         // Assuming the form fields match the JSON structure you provided earlier
@@ -90,10 +45,13 @@ pricingEngineApp.post('/price', async (req, res) => {
 
     try {
         const formData = new FormData();
-        formData.append('address', requestData.address);
+        formData.append('rsvpAddress', requestData.address);
         formData.append('price', price);
 
+        console.log("Sent price of " + price + " for request " + requestData.address);
+
         await axios.post(process.env.WEBHOOK_URL, formData, {headers: formData.getHeaders()});
+
         res.send({ status: 'success', requestId: params.requestId, price: price });
     } catch (error) {
         res.status(500).send({ status: 'error', message: 'Failed to call webhook on node provider service' });
