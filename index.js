@@ -3,7 +3,7 @@ require('dotenv').config();
 
 const express = require('express');
 const axios = require('axios');
-
+const FormData = require('form-data');
 const pricingEngineApp = express();
 //pricingEngineApp.use(express.json());
 pricingEngineApp.use(express.urlencoded({ extended: true }));
@@ -89,10 +89,11 @@ pricingEngineApp.post('/price', async (req, res) => {
     const price = calculatePrice(requestData);
 
     try {
-        await axios.post(process.env.WEBHOOK_URL, {
-            address: requestData.address,
-            price: price
-        });
+        const formData = new FormData();
+        formData.append('address', requestData.address);
+        formData.append('price', price);
+
+        await axios.post(process.env.WEBHOOK_URL, formData, {headers: formData.getHeaders()});
         res.send({ status: 'success', requestId: params.requestId, price: price });
     } catch (error) {
         res.status(500).send({ status: 'error', message: 'Failed to call webhook on node provider service' });
