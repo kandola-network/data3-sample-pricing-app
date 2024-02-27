@@ -63,10 +63,6 @@ bower_components
 # Jekyll metadata file used by Jekyll's build process.
 .jekyll-metadata
 
-# dotenv environment variable files
-.env
-.env.test
-
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build/Release
 
@@ -130,3 +126,7 @@ public/
 .fusebox/
 
 SCRATCH
+
+# dotenv environment variable files
+#.env
+#.env.test
