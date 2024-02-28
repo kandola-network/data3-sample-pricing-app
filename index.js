@@ -45,7 +45,7 @@ pricingEngineApp.post('/price', async (req, res) => {
 
     try {
         const formData = new FormData();
-        formData.append('rsvpAddress', requestData.address);
+        formData.append('rspAddress', requestData.address);
         formData.append('price', price);
 
         console.log("Sent price of " + price + " for request " + requestData.address);
