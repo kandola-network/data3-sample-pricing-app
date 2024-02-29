@@ -52,6 +52,39 @@ Pricing logic based on request structure:
     dbOwner: '0xa1d2339b6d633e129f3aeb2a59a8445dbb8b4117'
 }
 ```
+### Region Options
+Possible GeoRegions as defined by UN
+* EASTERN_AFRICA("Eastern Africa"),
+* MIDDLE_AFRICA("Middle Africa"),
+* NORTHERN_AFRICA("Northern Africa"),
+* SOUTHERN_AFRICA("Southern Africa"),
+* WESTERN_AFRICA("Western Africa"),
+* CARIBBEAN("Caribbean"),
+* CENTRAL_AMERICA("Central America"),
+* NORTHERN_AMERICA("Northern America"),
+* SOUTH_AMERICA("South America"),
+* CENTRAL_ASIA("Central Asia"),
+* EASTERN_ASIA("Eastern Asia"),
+* SOUTH_EASTERN_ASIA("South Eastern Asia"),
+* SOUTHERN_ASIA("Southern Asia"),
+* WESTERN_ASIA("Western Asia"),
+* WESTERN_EUROPE("Western Europe"),
+* SOUTHERN_EUROPE("Southern Europe"),
+* EASTERN_EUROPE("Eastern Europe"),
+* NORTHERN_EUROPE("Northern Europe"),
+* AUSTRALIA_AND_NEW_ZEALAND("Australia and New Zealand"),
+* MELANESIA("Melanesia"),
+* MICRONESIA("Micronesia"),
+* POLYNESIA("Polynesia")
+
+Enabled on the marketplace till now :
+* geoScheme: "WESTERN_EUROPE",country: "United Kingdom", city:"London" ,
+* geoScheme: "SOUTH_EASTERN_ASIA",country: "India", city:"Mumbai",
+* geoScheme: "NORTHERN_AMERICA",country: "USA", city:"Philadelphia",
+* geoScheme: "AUSTRALIA_AND_NEW_ZEALAND",country: "Australia", city:"Sydney"
+
+If you want to support more regions and cities, please let us know.
+
 
 ## Configuration
 You can pass the required environment variable either in a .env file in the root of the project:
