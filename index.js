@@ -11,7 +11,7 @@ const { calculatePrice } = require('./pricing');
 
 pricingEngineApp.post('/price', async (req, res) => {
     const reqJson = req.body;
-    console.debug("Data3 External Pricing Engine: Got pricing request body:", reqJson);
+    //console.debug("Data3 External Pricing Engine: Got pricing request body:", reqJson);
 
     if(!reqJson) {
         res.status(500).send({ status: 'error', message: 'Data3 External Pricing Engine Error: No request body for pricing' });
@@ -32,8 +32,6 @@ pricingEngineApp.post('/price', async (req, res) => {
     }
     console.debug("Data3 External Pricing Engine: Got pricing request JSON:", reqBody);
     */
-
-
 
     const requestData = {
         name: reqJson.name,
@@ -70,7 +68,7 @@ pricingEngineApp.post('/price', async (req, res) => {
         dbOwner: reqJson.dbOwner
     };
 
-    console.debug("Data3 External Pricing Engine: Calculating price for ", requestData);
+    //console.debug("Data3 External Pricing Engine: Calculating price for ", requestData);
     const price = calculatePrice(requestData);
 
     try {
@@ -82,7 +80,7 @@ pricingEngineApp.post('/price', async (req, res) => {
 
         await axios.post(process.env.WEBHOOK_URL, formData, {headers: formData.getHeaders()});
 
-        res.send({ status: 'success', requestId: reqBody.requestId, price: price });
+        res.send({ status: 'success'});
     } catch (error) {
         res.status(500).send({ status: 'error', message: 'Failed to call webhook on node provider service' });
     }
