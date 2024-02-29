@@ -24,7 +24,6 @@
   dateCreated: 1709156623175,
   dbOwner: '0xa1d2339b6d633e129f3aeb2a59a8445dbb8b4117'
 }
-
  * @param request
  * @returns {number}
  */
