@@ -22,6 +22,37 @@ cd [local repository]
 npm install
 ```
 
+## Programming Your Custom Pricing Logic
+Use the function `calculatePrice(request)` to program your algorithm for pricing, given the customer request.
+The customer's request has these fields that you can use to determine the price:
+Pricing logic based on request structure:
+```json
+{
+    name: 'My Dev Deployment',
+    address: '581037272ca2533df3cf215dceac56c3fe8a1d6cc7317ec28e5e257e556ed056',
+    region: 'WESTERN_EUROPE-United Kingdom-London',
+    dbEngine: 'MySQL',
+    dbEngineVersion: '8.2.0',
+    specification: 'DB AI MODEL K12 - 256 GB RAM - 64 vCPU(s)',
+    memory: 256,
+    storage: 4100,
+    cpu: 64,
+    isRedundancyRequired: true,
+    redundancy: 1,
+    isBackupRequired: true,
+    backupFrequencyDays: 2,
+    backupRetentionDays: 1,
+    deploymentType: 'SHARED',
+    isSharedInstance: true,
+    iops: 1000,
+    paymentFrequency: 'MONTHLY',
+    isActive: true,
+    status: 'NEW',
+    dateCreated: 1709156623175,
+    dbOwner: '0xa1d2339b6d633e129f3aeb2a59a8445dbb8b4117'
+}
+```
+
 ## Configuration
 You can pass the required environment variable either in a .env file in the root of the project:
 
