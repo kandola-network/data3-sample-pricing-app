@@ -9,6 +9,12 @@ pricingEngineApp.use(express.json());
 //pricingEngineApp.use(express.urlencoded({ extended: true }));
 const { calculatePrice } = require('./pricing');
 
+pricingEngineApp.post('/deploy', async (req, res) => {
+    const reqJson = req.body;
+    console.debug("Data3 External Deploy API: Got deploy request body:", reqJson);
+    res.send({ status: 'success'});
+});
+
 pricingEngineApp.post('/price', async (req, res) => {
     const reqJson = req.body;
     //console.debug("Data3 External Pricing Engine: Got pricing request body:", reqJson);
