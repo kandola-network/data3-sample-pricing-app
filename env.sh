@@ -1,1 +1,1 @@
-export WEBHOOK_URL=http://localhost:8080/internalCommunication/responseForProposal
+export WEBHOOK_URL=http://localhost:8081/internalCommunication/responseForProposal
