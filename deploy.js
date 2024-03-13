@@ -1,5 +1,5 @@
 /***
- Deploiyment logic based on request structure:
+ Deployment logic based on request structure:
  {
   dbOwner: '0xb34ce981c44702f0e5b19884009f76be2f10fbb7',
   region: 'WESTERN_EUROPE-United Kingdom-London',
